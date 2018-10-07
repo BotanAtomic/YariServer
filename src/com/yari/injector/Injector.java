@@ -39,7 +39,7 @@ public class Injector {
                     if (field.isAnnotationPresent(InjectConfiguration.class)) {
                         field.set(instance, properties.get(field.getAnnotation(InjectConfiguration.class).value()));
                     } else if (field.isAnnotationPresent(Inject.class)) {
-                        field.set(instance, instances.get(field.getAnnotation(Inject.class).value()));
+                        field.set(instance, instances.get(field.getType()));
                     }
                 } catch (IllegalAccessException e) {
                     ExceptionManager.register(e);
