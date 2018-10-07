@@ -11,7 +11,7 @@ class Header {
 
     private volatile static short MAJOR_VERSION = 0;
     private volatile static short VERSION = 2;
-    private static short MINOR_VERSION = 2;
+    private static short MINOR_VERSION = 8;
 
 
     static void show() throws Exception {
@@ -30,10 +30,12 @@ class Header {
 
         updateVersion();
 
+        System.out.println("Version : " + (MAJOR_VERSION + "." + VERSION + "." + MINOR_VERSION));
+
+
     }
 
     private static void updateVersion() throws Exception {
-
         Path sourcePath = Paths.get(new File("src/com/yari/core/Header.java").getAbsolutePath());
 
         String source = FilesUtils.readAll(sourcePath.toString());

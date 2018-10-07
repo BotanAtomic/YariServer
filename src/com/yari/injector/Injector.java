@@ -5,9 +5,12 @@ import com.yari.injector.api.InjectConfiguration;
 import com.yari.utils.ExceptionManager;
 import org.json.JSONObject;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class Injector {
 
@@ -59,6 +62,10 @@ public class Injector {
         this.properties = configuration.toMap();
     }
 
+    public <T> Set<T> annotatedBy(Class<? extends Annotation> annotation, Class<T> cast) {
+        return instances.values().stream().filter(instance -> instance.getClass().isAnnotationPresent(annotation)).map(o -> (T) o)
+                .collect(Collectors.toSet());
+    }
 
     public <T> T get(Class<T> abstractClass) {
         return (T) instances.get(abstractClass);

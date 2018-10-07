@@ -1,9 +1,10 @@
 package com.yari.core;
 
+import com.yari.api.Service;
 import com.yari.files.FilesUtils;
 import com.yari.injector.Injector;
 import com.yari.network.NetworkModule;
-import com.yari.network.game.GameServer;
+import com.yari.network.api.NetworkService;
 import org.json.JSONObject;
 
 public class Main {
@@ -16,6 +17,8 @@ public class Main {
 
         injector.bind(new NetworkModule());
 
-        GameServer gameServer = injector.get(GameServer.class);
+        injector.annotatedBy(NetworkService.class, Service.class).forEach(Service::start);
+
+
     }
 }

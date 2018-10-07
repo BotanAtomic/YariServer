@@ -1,4 +1,19 @@
 package com.yari.network.http;
 
-public class HTTPServer {
+import com.yari.api.Service;
+import com.yari.network.api.NetworkService;
+
+@NetworkService
+public class HTTPServer implements Service {
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
 }
