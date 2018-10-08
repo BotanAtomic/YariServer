@@ -31,7 +31,9 @@ public class Injector {
             module.prepare(this);
 
         instances.values().forEach(instance -> {
-            Field[] fields = instance.getClass().getDeclaredFields();
+            Class<?> injectedClass = instance.getClass();
+
+            Field[] fields = injectedClass.getDeclaredFields();
 
             for (Field field : fields) {
                 field.setAccessible(true);
