@@ -29,13 +29,12 @@ public class GameServer implements Service {
                     .childHandler(new ChannelInitializer<>() {
                         @Override
                         protected void initChannel(Channel channel) throws Exception {
-                            channel.pipeline().addFirst(new ProtocolDecoder());
-                            channel.pipeline().addLast(new GameHandler());
+                            channel.pipeline().addLast(new ProtocolDecoder(),new GameHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
-                    .option(ChannelOption.TCP_NODELAY, true)
-                    .childOption(ChannelOption.SO_KEEPALIVE, true);
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    .childOption(ChannelOption.TCP_NODELAY, true);
 
             ChannelFuture f = b.bind(port).sync();
 

@@ -11,7 +11,7 @@ class Header {
 
     private volatile static short MAJOR_VERSION = 0;
     private volatile static short VERSION = 2;
-    private static short MINOR_VERSION = 16;
+    private static short MINOR_VERSION = 39;
 
 
     static void show() throws Exception {
@@ -55,7 +55,7 @@ class Header {
 
         System.out.println("Total memory available to JVM : " + Runtime.getRuntime().totalMemory() / 1000 + " MB\n");
 
-        System.out.println("___________________________________________\n");
+        System.out.println("__________________________________________\n");
     }
 
     private static void updateVersion() throws Exception {

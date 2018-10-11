@@ -19,7 +19,5 @@ public class Main {
 
         injector.<Service>annotatedBy(NetworkService.class).forEach(Service::start);
 
-
-
     }
 }
