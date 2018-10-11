@@ -64,7 +64,7 @@ public class Injector {
         this.properties = configuration.toMap();
     }
 
-    public <T> Set<T> annotatedBy(Class<? extends Annotation> annotation, Class<T> cast) {
+    public <T> Set<T> annotatedBy(Class<? extends Annotation> annotation) {
         return instances.values().stream().filter(instance -> instance.getClass().isAnnotationPresent(annotation)).map(o -> (T) o)
                 .collect(Collectors.toSet());
     }

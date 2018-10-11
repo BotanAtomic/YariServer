@@ -17,7 +17,8 @@ public class Main {
 
         injector.bind(new NetworkModule());
 
-        injector.annotatedBy(NetworkService.class, Service.class).forEach(Service::start);
+        injector.<Service>annotatedBy(NetworkService.class).forEach(Service::start);
+
 
 
     }

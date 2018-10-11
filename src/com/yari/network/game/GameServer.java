@@ -4,6 +4,7 @@ import com.yari.api.Service;
 import com.yari.injector.api.InjectConfiguration;
 import com.yari.network.api.NetworkService;
 import com.yari.network.game.backend.GameHandler;
+import com.yari.network.game.backend.ProtocolDecoder;
 import com.yari.utils.ExceptionManager;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -28,6 +29,7 @@ public class GameServer implements Service {
                     .childHandler(new ChannelInitializer<>() {
                         @Override
                         protected void initChannel(Channel channel) throws Exception {
+                            channel.pipeline().addFirst(new ProtocolDecoder());
                             channel.pipeline().addLast(new GameHandler());
                         }
                     })
