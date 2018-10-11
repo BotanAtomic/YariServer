@@ -11,11 +11,11 @@ import java.util.List;
 public class ProtocolDecoder extends ByteToMessageDecoder {
 
     @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        if (in.readableBytes() < (Protocol.MESSAGE_ID_SIZE + Protocol.SIZE_HEADER)) {
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
+        if (in.readableBytes() < Protocol.TOTAL_HEADER_SIZE) {
             in.resetReaderIndex();
         } else {
-            short id = in.readByte();
+            byte id = in.readByte();
             int size = in.readInt();
             byte[] data = new byte[size];
             in.readBytes(data);
